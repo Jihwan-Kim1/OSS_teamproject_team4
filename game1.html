@@ -19,10 +19,11 @@
 <div id = "have_to_remove">
 <button type="button" class="btn btn-primary btn-lg" id = "starting">Start!</button>
 
-    <input type='button' class = "btn btn-secondary btn-lg"
+  <input id = "able_target" type='button' class = "btn btn-secondary btn-lg"  disabled
   onclick='count("plus")'
   value='Click Here!'/>
 
+  
 </div>
 
 
@@ -34,9 +35,13 @@
     <script>
         let start_button = document.querySelector("#starting");
         let remove_target = document.querySelector("#have_to_remove");
-        let time=10
+        let ableTarget = document.querySelector("#able_target");
+        let time=10; 
         start_button.addEventListener("click",()=>{
-          //let time = 10;
+          //let time = 10; 
+          
+          ableTarget.disabled = false; 
+        
           let x = setInterval(function(){
     
           document.getElementById("clock").innerHTML  = time;
