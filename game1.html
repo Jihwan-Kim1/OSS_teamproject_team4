@@ -14,37 +14,65 @@
       <span class="navbar-brand mb-0 h1">광클 게임!</span>
     </div>
   </nav>
+  
+ 
+<div id = "have_to_remove">
+<button type="button" class="btn btn-primary btn-lg" id = "starting">Start!</button>
 
-
-  <input type='button' class = "btn btn-secondary btn-lg"
+  <input id = "able_target" type='button' class = "btn btn-secondary btn-lg"  disabled
   onclick='count("plus")'
   value='Click Here!'/>
 
+  
+</div>
+
+
     <div id='print_here!'>0</div>
     <div id="clock"></div>
+
+
+    <div id = 'result'></div>
     <script>
-        function count(type)  {
+        let start_button = document.querySelector("#starting");
+        let remove_target = document.querySelector("#have_to_remove");
+        let ableTarget = document.querySelector("#able_target");
+        let time=10; 
+        start_button.addEventListener("click",()=>{
+          //let time = 10; 
+          
+          ableTarget.disabled = false; 
+        
+          let x = setInterval(function(){
+    
+          document.getElementById("clock").innerHTML  = time;
+          time -= 1;
+
+          if(time==0){
+            clearInterval(x);
+            remove_target.remove();
+          document.getElementById("clock").innerHTML = "Game Over..";
+        }
+      },1000);
+
+
+        });
+        
+
+      function count(type, time)  {
             const resultElement = document.getElementById('print_here!');
   
             let number = resultElement.innerText;
-  
+            let temp = number;
             number = parseInt(number) + 1;
             resultElement.innerText = number;
+
+            if(time===0)  {
+              console.log("time out");
+              const finalResult = document.getElementById("result").innerHTML = temp;
+              finalResult.innerHTML = temp;
         }
-
+      }
         
-        let time = 15;
-        let x = setInterval(function(){
-            
-            document.getElementById("clock").innerHTML  = time;
-            time -= 1;
-
-            if(time==0){
-                clearInterval(x);
-                document.getElementById("clock").innerHTML = "Game Over..";
-            }
-        },1000)
-    
     </script>
 
 </body>
