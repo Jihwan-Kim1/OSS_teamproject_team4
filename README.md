@@ -1,4 +1,4 @@
-#Mini Game!
+# Mini Game!
 
 ## Screen Shots of our contents.
 -[image](thumbnail.png)
