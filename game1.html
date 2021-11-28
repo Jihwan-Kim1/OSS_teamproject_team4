@@ -43,60 +43,96 @@
         width: 200px;
       }
 
+      #able_target {
+          position:static;
+          width: 50%;
+          margin-left: 200px;
+          margin-top: 50px;
+      }
 
     </style>
   </head>
   <body>
     <nav class="navbar navbar-light bg-light">
       <div class="container">
-        <span class="navbar-brand mb-0 h1"><i class="bi bi-palette"></i>MINI GAME</span>
+        <span class="navbar-brand mb-0 h1"><i class="bi bi-palette"></i>광클 게임</span>
       </div>
     </nav>
+
     <div class="select pt-2">
 
       <div class="d-flex flex-column">
-        <div class="row">
-            
-            <div class="cont">
-                <label for="formGroupExampleInput" class="form-label">Count</label>
-                <div id='print_here!'> 0 </div>
+               
+        
+        
+        <div id = "have_to_remove">
+            <button type="button" class="btn btn-primary btn-lg" id = "starting">Start!</button>
+
+            <div class="mt-5">
+                <label for="formGroupExampleInput" class="form-label">Time</label>
+                <div id="clock"></div>
             </div>
+
+            <input type='button' id = "able_target" type='button' class = "game"  disabled
+                onclick='count("plus")'
+                value='Click Here!'/>
             
-            <input type='button' class = "game" onclick='count("plus")' value='Click Here!!'/>
         </div>
 
-        <div class="">
-            <label for="formGroupExampleInput" class="form-label">Time</label>
-            <div id="clock"></div>
+        <div class="mt-5">
+            <label for="formGroupExampleInput" class="form-label">Count</label>
+            <div id='print_here!'> 0 </div>
+        </div>
+
+        
+
+        <div id = "have_to_remove">
+            
         </div>
         
-      </div
-	</div>
+	
 
+    <div id = 'result'></div>
     <script>
-        function count(type)  {
+        let start_button = document.querySelector("#starting");
+        let remove_target = document.querySelector("#have_to_remove");
+        let ableTarget = document.querySelector("#able_target");
+        let time=10; 
+        start_button.addEventListener("click",()=>{
+          //let time = 10; 
+          
+          ableTarget.disabled = false; 
+        
+          let x = setInterval(function(){
+    
+          document.getElementById("clock").innerHTML  = time;
+          time -= 1;
+
+          if(time==0){
+            clearInterval(x);
+            remove_target.remove();
+          document.getElementById("clock").innerHTML = "Game Over..";
+        }
+      },1000);
+
+        });
+        
+      function count(type, time)  {
             const resultElement = document.getElementById('print_here!');
   
             let number = resultElement.innerText;
-  
+            let temp = number;
             number = parseInt(number) + 1;
             resultElement.innerText = number;
+
+            if(time===0)  {
+              console.log("time out");
+              const finalResult = document.getElementById("result").innerHTML = temp;
+              finalResult.innerHTML = temp;
         }
-
+      }
         
-        let time = 15;
-        let x = setInterval(function(){
-            
-            document.getElementById("clock").innerHTML  = time;
-            time -= 1;
-
-            if(time==0){
-                clearInterval(x);
-                document.getElementById("clock").innerHTML = "Game Over..";
-            }
-        },1000)
-    
     </script>
-    
+    </div>  
   </body>
 </html>
